@@ -3,6 +3,11 @@ Documentation     Browser utility keywords that use global configuration.
 Library           SeleniumLibrary
 Resource         ../config/global_config.robot
 
+*** Variables ***
+&{selenoid:options}    enableVNC=${True}    enableVideo=${False}
+&{DESIRED_CAPABILITIES_CHROME}    browserName=chrome    browserVersion=128.0    selenoid:options=&{selenoid:options} 
+
+
 *** Keywords ***
 Open Configured Browser
     [Documentation]    Open browser based on ${ENVIRONMENT} (LOCAL/REMOTE) and go to ${BASE_URL}.
