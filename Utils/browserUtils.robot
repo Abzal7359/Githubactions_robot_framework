@@ -10,15 +10,16 @@ Open Configured Browser
     ...    ELSE    Open Remote Browser
 
 Open Local Browser
-    [Documentation]    Open browser on local machine.
+    [Documentation]    Open headless Chrome on local machine (works in GitHub Actions)
     ${options}=    Create List
     ...    --headless=new
     ...    --no-sandbox
     ...    --disable-dev-shm-usage
     ...    --disable-gpu
     ...    --window-size=1920,1080
-    Open Browser    ${BASE_URL}    ${BROWSER}    options=${options}
-    Maximize Browser Window
+
+    # Open browser with options — DO NOT use desired_capabilities
+    Open Browser    ${BASE_URL}    chrome    options=${options}
 
 Open Remote Browser
     [Documentation]    Open browser on remote Selenium/Grid node using ${REMOTE_URL}.
