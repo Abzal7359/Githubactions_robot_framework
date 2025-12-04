@@ -11,7 +11,13 @@ Open Configured Browser
 
 Open Local Browser
     [Documentation]    Open browser on local machine.
-    Open Browser    ${BASE_URL}    ${BROWSER}
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${chrome_options}    add_argument    --headless=new
+    Call Method    ${chrome_options}    add_argument    --no-sandbox
+    Call Method    ${chrome_options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${chrome_options}    add_argument    --disable-gpu
+    Call Method    ${chrome_options}    add_argument    --window-size=1920,1080
+    Open Browser    ${BASE_URL}    ${BROWSER}    options=${chrome_options}
     Maximize Browser Window
 
 Open Remote Browser
