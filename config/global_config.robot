@@ -3,14 +3,14 @@ Documentation     Global configuration for environments, browser, and credential
 
 *** Variables ***
 # Environment: LOCAL or REMOTE
-${ENVIRONMENT}    LOCAL
+${ENVIRONMENT}    REMOTE
 
 # Application under test
 ${BASE_URL}    XXXXX
 
 # Browser configuration
 ${BROWSER}              chrome
-${BROWSER_VERSION}      latest
+${BROWSER_VERSION}      128.0
 
 
 # Login credentials (example values; replace with real ones or override via CLI/variables file)
