@@ -11,15 +11,13 @@ Open Configured Browser
 
 Open Local Browser
     [Documentation]    Open headless Chrome on local machine (works in GitHub Actions)
-    ${options}=    Create List
-    ...    --headless=new
-    ...    --no-sandbox
-    ...    --disable-dev-shm-usage
-    ...    --disable-gpu
-    ...    --window-size=1920,1080
-
-    # Open browser with options — DO NOT use desired_capabilities
-    Open Browser    ${BASE_URL}    chrome    options=${options}
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    Call Method    ${options}    add_argument    --headless=new
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    --disable-gpu
+    Call Method    ${options}    add_argument    --window-size=1920,1080
+    Open Browser    ${BASE_URL}    ${BROWSER}    options=${options}
 
 Open Remote Browser
     [Documentation]    Open browser on remote Selenium/Grid node using ${REMOTE_URL}.
